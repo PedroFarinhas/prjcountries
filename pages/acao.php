@@ -9,7 +9,8 @@ if (!isset($_GET['pais'] ))
 } else {
 
      $selecao = $_GET['pais'];
-       var_dump($selecao);
+
+      // var_dump($selecao);
 
     
      $url = "https://restcountries.com/v3.1/name/{$selecao}";
@@ -23,7 +24,7 @@ if (!isset($_GET['pais'] ))
          $context = stream_context_create($configuracoes); 
          $response = file_get_contents($url, false, $context);
 
-          var_dump($selecao);
+         // var_dump($selecao);
         //  var_dump($response);
          if ($response == false) {
                 $mensagem = "Erro ao acessar API countries";
@@ -45,14 +46,20 @@ if (!isset($_GET['pais'] ))
 <html lang="en">
 <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta commom="viewport" content="width=device-width, initial-scale=1.0">
         <title>Resultado </title>
 </head>
 <body>
         <div >
                
-                        <label> nome </label>
-                        <input type="text" value="<?= isset( $dados [0]['capital'][0]) ? $dados[0]['capital'][0]:""?>" disabled >   
+                        <label> Extenção do país </label> <br>
+                        <input type="text" value="<?= isset( $dados [0]['tld'][0]) ? $dados[0]['tld'][0]:"correspondência não encontrada "?>" disabled >  <br> 
+
+                        <label> Capital </label> <br>
+                        <input type="text" value="<?= isset( $dados [0]['capital'][0]) ? $dados[0]['capital'][0]:"correspondência não encontrada"?>" disabled >   <br>
+                                                
+                        <label> nome comum no mundo </label> <br>
+                        <input type="text" value="<?= isset( $dados [0]['name']['commom'][1]) ? $dados[0]['name']['commom'][1]:"correspondência não encontrada"?>" disabled >   <br>
                                                 
         </div>
 </body>
