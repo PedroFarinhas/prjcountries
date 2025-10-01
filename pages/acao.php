@@ -62,11 +62,24 @@ if (!isset($_GET['pais'])) {
                 <input type="text" value="<?= isset($dados[0]['capital'][0]) ? $dados[0]['capital'][0] : "correspondência não encontrada" ?>" disabled> <br>
 
                 <label> nome comum no mundo </label> <br>
-                <input type="text" value="<?= isset($dados[0]['name']['common']) ? $dados[0]['name']['common'] : "correspondência não encontrada" ?>" disabled> <br>
+                <input type="text" value="<?= isset($dados[0]['name']['common']) ? $dados[0]['name']['common'] : "correspondência não encontrada" ?>" disabled> <br> <br>
 
 
-                <label> bordas </label> <br>
-                <input type="text" value="<?= isset($dados[0]['borders'][0]) ? $dados[0]['borders'][0] : "correspondência não encontrada" ?>" disabled> <br>
+                <label> Fronteiras </label>
+                <ul>
+                        <?php foreach ($dados[0]['borders'] as $border): ?>
+                                <li><?= $border ?></li>
+                        <?php endforeach; ?>
+                </ul>
+
+                <!-- nos dois casos não temos validação do erro, australia da erro pois nao tem fronteiras
+                 porque é necessário o endforeach? -->
+
+                <select name="borders">
+                        <?php foreach ($dados[0]['borders'] as $border): ?>
+                                <option value="<?= $border ?>"><?= $border ?></option>
+                        <?php endforeach; ?>
+                </select> <br><br>
 
 
                 <label> Bandeiras </label> <br>
@@ -75,8 +88,7 @@ if (!isset($_GET['pais'])) {
 
 
         </div>
-        <img src="" alt="">
+
 </body>
 
 </html>
-
